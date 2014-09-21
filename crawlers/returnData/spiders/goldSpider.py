@@ -16,4 +16,5 @@ class GoldSpider(scrapy.Spider):
 		
 		for d in daily:
 			item['closeprice']=d[1]
+			item['epochtime']=d[0]
 			yield item
