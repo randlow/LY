@@ -13,5 +13,5 @@ class ReturndataItem(scrapy.Item):
     # name = scrapy.Field()
  
     closeprice = scrapy.Field()
-
+    epochtime = scrapy.Field()
     pass
