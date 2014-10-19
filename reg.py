@@ -71,12 +71,11 @@ def regress2(params):
 
 	for elem in x:
 		if elem <q1:
-			bpred=c0+c1*elem+c2*elem+c3*elem
-			#print elem
+			bpred=c0+c1+c2+c3
 		elif elem>q1 and elem<q5:
-			bpred=c0+c1*elem+c2*elem
+			bpred=c0+c1+c2
 		elif elem>q5 and elem<q10:
-			bpred=c0+c1*elem
+			bpred=c0+c1
 		else:
 			bpred=c0
 	
