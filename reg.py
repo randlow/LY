@@ -45,7 +45,7 @@ def regress1(params):
 
 	ypred = a+bt*x+et
 	LL= -np.sum(stats.norm.logpdf(y,loc=ypred, scale=et))
-	return(LL)
+	return LL
 
 initParams1=[5,5,5]
 results1=minimize(regress1, initParams1, method='nelder-mead')
@@ -80,14 +80,21 @@ def regress2(params):
 			bpred=c0
 	
 	LL= -np.sum(stats.norm.logpdf(estParms1[1],loc=bpred))
-	return(LL)
+	return LL
 
 initParams2=[0,0,0,0]
 results2=minimize(regress2, initParams2, method='nelder-mead')
 
 print results2.x
 
-#def garch(params):
+def garch(params, x):
+	omega, alpha, beta = params**2
+	n=len(x)
+	v=np.ones(n)
+	for i in range(1,n):
+		v[i]=omega+alpha*x[i-1]**2+beta*v[i-1]
+	LL=0.5*((np.log(v)+x**2/(v)).sum()+n/np.log(2*np.pi))
+	return LL
 	
 
 def plot():
