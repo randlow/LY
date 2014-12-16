@@ -5,7 +5,6 @@ from scipy import optimize
 import scipy.stats as stats
 import datetime
 import matplotlib.pyplot as plt
-import matplotlib.dates as dates
 
 def gReturn():
 	path = r'./scraped/gold.csv'
@@ -70,7 +69,6 @@ plt.grid(True)
 plt.show()
 '''
 
-
 def regress2(params):
 	c0=params[0]
 	c1=params[1]
@@ -94,7 +92,7 @@ def regress2(params):
 			bpred=c0
 		b.append(bpred)
 
-	LL= -np.sum(stats.norm.logpdf(estParms1[1], loc=b))
+	LL= -np.sum(stats.norm.logpdf(b, loc=estParms1[1]))
 	return LL
 
 initParams2=[0.001,0.001,0.001,0.001]
@@ -158,7 +156,7 @@ print results3.x
 '''
 
 def plot():
-	fig = plt.figure("xxxx", figsize=(70,55))
+	fig = plt.figure("xxxx", figsize=(50,30))
 	path1 = r'./scraped/gold.csv'
 	df1 = pd.read_csv(path1)
 	y1=df1['USD']
@@ -170,7 +168,7 @@ def plot():
 	x=df2['Date']
 	new_x=[]
 	for elem in x:
-		new=dates.datestr2num(elem)
+		new=datetime.datetime.strptime(elem, '%d/%m/%Y')
 		new_x.append(new)
 
 	years=dates.YearLocator()
