@@ -69,9 +69,37 @@ def reg(params):
 	et=params[5]
 
 	ypred=a+x*(c0+c1*dq10+c2*dq5+c3*dq1)+et
-	LL= -np.sum(stats.norm.logpdf(y,loc=ypred, scale=et))
+	LL= -np.sum(stats.norm.logpdf(y, loc=ypred, scale=et))
 	return LL
 
-initParams=[0,0,0,0,0,0]
+initParams=[0.1,0.1,0.1,0.1,0.1,0.1]
 results=minimize(reg, initParams, method='nelder-mead')
 print results.x
+
+estParms=results.x
+residuals=y-(estParms[0]+x*(estParms[1]+estParms[2]*dq10+estParms[3]*dq5+estParms[4]*dq1))
+#print residuals
+
+def garch11(param, y):
+	n=len(y)
+	pi, alpha, beta=param
+	ht=np.ones(n)
+	ht[0]=np.var(residuals)
+	for i in range (1,n):
+		ht[i]=pi+alpha*residuals[i-1]**2+beta*(ht[i-1])
+	stdRes=residuals/np.sqrt(ht)
+	LogL=-((0.5*np.log(2*np.pi)+0.5*np.log(ht)+0.5*stdRes**2).sum())
+	return LogL
+
+R=optimize.fmin(garch11,np.array([.1,.1,.1]),args=(y,),full_output=1)
+print R
+
+pi=R[0][0]
+alpha=R[0][1]
+beta=R[0][2]
+
+ht=np.ones(len(y))
+ht[0]=np.var(residuals)
+for i in range (1,len(y)):
+	ht[i]=pi+alpha*residuals[i-1]**2+beta*(ht[i-1])
+print ht
