@@ -5,6 +5,7 @@ from scipy import optimize
 from scipy import stats as stats
 import datetime
 import matplotlib.pyplot as plt
+from matplotlib import dates
 
 def gReturn():
 	path = r'./scraped/gold.csv'
@@ -68,17 +69,20 @@ def reg(params):
 	c3=params[4]
 	et=params[5]
 
+	mean=np.mean(y)
+
 	ypred=a+x*(c0+c1*dq10+c2*dq5+c3*dq1)+et
 	LL= -np.sum(stats.norm.logpdf(y, loc=ypred, scale=et))
 	return LL
 
 initParams=[0.1,0.1,0.1,0.1,0.1,0.1]
-results=minimize(reg, initParams, method='nelder-mead')
+results=minimize(reg, initParams, method='BFGS')
 print results.x
 
 estParms=results.x
 residuals=y-(estParms[0]+x*(estParms[1]+estParms[2]*dq10+estParms[3]*dq5+estParms[4]*dq1))
-#print residuals
+residuals=residuals/1000
+print residuals
 
 def garch11(param, y):
 	n=len(y)
@@ -103,3 +107,26 @@ ht[0]=np.var(residuals)
 for i in range (1,len(y)):
 	ht[i]=pi+alpha*residuals[i-1]**2+beta*(ht[i-1])
 print ht
+print len(ht)
+
+def plot():
+	fig = plt.figure("xxxx", figsize=(50,30))
+	path = r'./scraped/gold.csv'
+	df = pd.read_csv(path, skiprows=range(1,2913), nrows=7825)
+	date=df['Name']
+	new_x=[]
+	for elem in date:
+		new=datetime.datetime.strptime(elem, '%d/%m/%Y')
+		new_x.append(new)
+
+	years=dates.YearLocator()
+	ax=fig.add_subplot(111)
+	ax.clear()
+	ax.plot_date(new_x,ht, '-',color='#245678')
+	xfmt=dates.DateFormatter('%Y')
+	ax.xaxis.set_major_locator(years)
+	ax.xaxis.set_major_formatter(xfmt)
+	plt.grid(True)
+	fig.autofmt_xdate()
+	plt.show()
+plot()

@@ -31,7 +31,7 @@ ax1.set_ylabel('S&P 500 Composite', color='#245678')
 
 ax2=ax1.twinx()
 ax2.plot(new_x,y1, '-',color='#ad3434')
-ax2.set_ylabel('Gold Price (USD)', color='#ad3434')
+ax2.set_ylabel('Gold Price (U$/Troy Ounce)', color='#ad3434')
 xfmt=dates.DateFormatter('%Y')
 ax1.xaxis.set_major_locator(years)
 ax1.xaxis.set_major_formatter(xfmt)
