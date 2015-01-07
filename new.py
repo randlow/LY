@@ -7,6 +7,16 @@ import datetime
 import matplotlib.pyplot as plt
 from matplotlib import dates
 
+# Calculating log returns from asset prices
+def calcLogRet(path,rangeVal,rowsVal,priceName)
+	df = pf.read_csv(path,skiprows=range(1,rangeVal),nrows=rowsVal)
+	price = df[priceName]
+	returnSeries = []
+	for i in range(0,len(price)-1):
+		logRet = np.log(goldPrice[i+1]/goldPrice[i])
+		returnSeries.append(logRet)
+	return np.array(returnSeries)
+"""		
 def gReturn():
 	path = r'./scraped/gold.csv'
 	df = pd.read_csv(path, skiprows=range(1,2913), nrows=7826)
@@ -16,6 +26,7 @@ def gReturn():
 		log=np.log(goldPrice[i+1]/goldPrice[i])
 		gReturn.append(log)
 	return np.array(gReturn)
+
 
 def iReturn():
 	path=r'./scraped/sp500.csv'
@@ -29,11 +40,31 @@ def iReturn():
 	
 x=iReturn()
 y=gReturn()
+"""
 
-q10=np.percentile(x,10)
-q5=np.percentile(x,5)
-q1=np.percentile(x,1)
+goldRet = calcLogRet(r'./scraped/gold.csv',2913,7826,'USD')
+usRet = calcLogRet(r'./scraped/sp500.csv',3959,7826,'PI')
 
+# Calculating quartile values from returns series
+q10=np.percentile(goldRet,10)
+q5=np.percentile(goldRet,5)
+q1=np.percentile(goldRet,1)
+
+# Generating indicator variable series for each percentiles
+def genIndVar(series,percentileVal)
+indSeries=[]
+for elem in series:
+	if series<percentileVal:
+		indSeries.append(1)
+	else:
+		indSeries.append(0)
+return np.array(indSeries)		
+
+indVar_q10 = genIndVar(gold,q10)
+indVar_q5 = genIndVar(gold,q5)
+indVar_q1 = genIndVar(gold,q1)
+
+"""
 dq10=[]
 for elem in x:
 	if elem<q10:
@@ -60,6 +91,7 @@ for elem in x:
 		dq1.append(0)
 dq1=np.array(dq1)
 print dq1
+"""
 
 def reg(params):
 	a=params[0]
