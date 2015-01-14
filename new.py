@@ -6,14 +6,16 @@ from scipy import stats as stats
 import datetime
 import matplotlib.pyplot as plt
 from matplotlib import dates
+import statsmodels
+#import rpy2.objects as robjects
 
 # Calculating log returns from asset prices
-def calcLogRet(path,rangeVal,rowsVal,priceName)
-	df = pf.read_csv(path,skiprows=range(1,rangeVal),nrows=rowsVal)
+def calcLogRet(path,rangeVal,rowsVal,priceName):
+	df = pd.read_csv(path,skiprows=range(1,rangeVal),nrows=rowsVal)
 	price = df[priceName]
 	returnSeries = []
 	for i in range(0,len(price)-1):
-		logRet = np.log(goldPrice[i+1]/goldPrice[i])
+		logRet = np.log(price[i+1]/price[i])
 		returnSeries.append(logRet)
 	return np.array(returnSeries)
 """		
@@ -42,56 +44,38 @@ x=iReturn()
 y=gReturn()
 """
 
-goldRet = calcLogRet(r'./scraped/gold.csv',2913,7826,'USD')
-usRet = calcLogRet(r'./scraped/sp500.csv',3959,7826,'PI')
+goldRet = calcLogRet(r'./scraped/gold.csv',1,7826,'Price')
+usRet = calcLogRet(r'./scraped/sp500.csv',3959,7826,'S&P 500 COMPOSITE')
+
+#print goldRet
 
 # Calculating quartile values from returns series
-q10=np.percentile(goldRet,10)
-q5=np.percentile(goldRet,5)
-q1=np.percentile(goldRet,1)
+q10=np.percentile(usRet,10)
+q5=np.percentile(usRet,5)
+q1=np.percentile(usRet,1)
 
 # Generating indicator variable series for each percentiles
-def genIndVar(series,percentileVal)
-indSeries=[]
-for elem in series:
-	if series<percentileVal:
-		indSeries.append(1)
-	else:
-		indSeries.append(0)
-return np.array(indSeries)		
+def genIndVar(series,percentileVal):
+	indSeries=[]
+	for i in range(0,len(series)):
+		if series[i]<percentileVal:
+			indSeries.append(1)
+		else:
+			indSeries.append(0)
+	return np.array(indSeries)		
 
-indVar_q10 = genIndVar(gold,q10)
-indVar_q5 = genIndVar(gold,q5)
-indVar_q1 = genIndVar(gold,q1)
+indVar_q10 = genIndVar(usRet,q10)
+indVar_q5 = genIndVar(usRet,q5)
+indVar_q1 = genIndVar(usRet,q1)
+'''
+X=np.column_stack((np.ones(len(usRet)),usRet,indVar_q10,indVar_q5,indVar_q1))
+print X
 
-"""
-dq10=[]
-for elem in x:
-	if elem<q10:
-		dq10.append(1)
-	else:
-		dq10.append(0)
-dq10=np.array(dq10)
-print dq10
+res=LikelihoodModel(goldRet,X).fit()
 
-dq5=[]
-for elem in x:
-	if elem<q5:
-		dq5.append(1)
-	else:
-		dq5.append(0)
-dq5=np.array(dq5)
-print dq5
+print (res.summary())
 
-dq1=[]
-for elem in x:
-	if elem<q1:
-		dq1.append(1)
-	else:
-		dq1.append(0)
-dq1=np.array(dq1)
-print dq1
-"""
+
 
 def reg(params):
 	a=params[0]
@@ -101,10 +85,8 @@ def reg(params):
 	c3=params[4]
 	et=params[5]
 
-	mean=np.mean(y)
-
-	ypred=a+x*(c0+c1*dq10+c2*dq5+c3*dq1)+et
-	LL= -np.sum(stats.norm.logpdf(y, loc=ypred, scale=et))
+	ypred=a+usRet*(c0+c1*indVar_q10+c2*indVar_q5+c3*indVar_q1)+et
+	LL= -np.sum(stats.norm.logpdf(ypred, loc=goldRet, scale=et))
 	return LL
 
 initParams=[0.1,0.1,0.1,0.1,0.1,0.1]
@@ -112,9 +94,13 @@ results=minimize(reg, initParams, method='BFGS')
 print results.x
 
 estParms=results.x
-residuals=y-(estParms[0]+x*(estParms[1]+estParms[2]*dq10+estParms[3]*dq5+estParms[4]*dq1))
+residuals=goldRet-(estParms[0]+usRet*(estParms[1]+estParms[2]*indVar_q10+estParms[3]*indVar_q5+estParms[4]*indVar_q1))
 residuals=residuals/1000
 print residuals
+stdRes = (residuals-np.mean(residuals))/np.std(residuals)
+#print stdRes
+print np.var(residuals)
+print np.std(residuals)
 
 def garch11(param, y):
 	n=len(y)
@@ -123,29 +109,26 @@ def garch11(param, y):
 	ht[0]=np.var(residuals)
 	for i in range (1,n):
 		ht[i]=pi+alpha*residuals[i-1]**2+beta*(ht[i-1])
-	stdRes=residuals/np.sqrt(ht)
 	LogL=-((0.5*np.log(2*np.pi)+0.5*np.log(ht)+0.5*stdRes**2).sum())
 	return LogL
 
-R=optimize.fmin(garch11,np.array([.1,.1,.1]),args=(y,),full_output=1)
+R=optimize.fmin(garch11,np.array([.1,.1,.1]),args=(goldRet,),full_output=1)
 print R
 
 pi=R[0][0]
 alpha=R[0][1]
 beta=R[0][2]
 
-ht=np.ones(len(y))
-ht[0]=np.var(residuals)
-for i in range (1,len(y)):
-	ht[i]=pi+alpha*residuals[i-1]**2+beta*(ht[i-1])
-print ht
-print len(ht)
+
 
 def plot():
 	fig = plt.figure("xxxx", figsize=(50,30))
-	path = r'./scraped/gold.csv'
-	df = pd.read_csv(path, skiprows=range(1,2913), nrows=7825)
-	date=df['Name']
+	path2 = r'./scraped/gold.csv'
+	path=r'./scraped/ht.csv'
+	df1 = pd.read_csv(path2, nrows=7825, header=0)
+	df2=pd.read_csv(path)
+	date=df1['Name']
+	ht=df2['ht']
 	new_x=[]
 	for elem in date:
 		new=datetime.datetime.strptime(elem, '%d/%m/%Y')
@@ -162,3 +145,5 @@ def plot():
 	fig.autofmt_xdate()
 	plt.show()
 plot()
+'''
+
