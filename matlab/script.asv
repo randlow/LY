@@ -27,7 +27,6 @@ rid=fopen('result.txt','at');
 % end
 
 allRet=[];
-coeffData = cell(numCols-1,MnumCols);
 for i=2:numCols
     idxName=headers{i};
     p=data{i};

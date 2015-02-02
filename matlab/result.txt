@@ -1,0 +1,44 @@
+Gold U$/Troy Ounce against AUSTRALIA
+Silver cts/Troy OZ against AUSTRALIA
+Palladium U$/Troy Ounce against AUSTRALIA
+Platinum U$/Troy Ounce against AUSTRALIA
+Gold U$/Troy Ounce against UK
+Silver cts/Troy OZ against UK
+Palladium U$/Troy Ounce against UK
+Platinum U$/Troy Ounce against UK
+Gold U$/Troy Ounce against CHINA
+Silver cts/Troy OZ against CHINA
+Palladium U$/Troy Ounce against CHINA
+Platinum U$/Troy Ounce against CHINA
+Gold U$/Troy Ounce against USA
+Silver cts/Troy OZ against USA
+Palladium U$/Troy Ounce against USA
+Platinum U$/Troy Ounce against USA
+Gold U$/Troy Ounce against EMU U$
+Silver cts/Troy OZ against EMU U$
+Palladium U$/Troy Ounce against EMU U$
+Platinum U$/Troy Ounce against EMU U$
+Gold U$/Troy Ounce against EM U$
+Silver cts/Troy OZ against EM U$
+Palladium U$/Troy Ounce against EM U$
+Platinum U$/Troy Ounce against EM U$
+Gold U$/Troy Ounce against EUROPEAN UNION U$
+Silver cts/Troy OZ against EUROPEAN UNION U$
+Palladium U$/Troy Ounce against EUROPEAN UNION U$
+Platinum U$/Troy Ounce against EUROPEAN UNION U$
+Gold U$/Troy Ounce against EUROPE U$
+Silver cts/Troy OZ against EUROPE U$
+Palladium U$/Troy Ounce against EUROPE U$
+Platinum U$/Troy Ounce against EUROPE U$
+Gold U$/Troy Ounce against NORTH AMERICA U$
+Silver cts/Troy OZ against NORTH AMERICA U$
+Palladium U$/Troy Ounce against NORTH AMERICA U$
+Platinum U$/Troy Ounce against NORTH AMERICA U$
+Gold U$/Troy Ounce against WORLD U$
+Silver cts/Troy OZ against WORLD U$
+Palladium U$/Troy Ounce against WORLD U$
+Platinum U$/Troy Ounce against WORLD U$
+Gold U$/Troy Ounce against EM LATIN AMERICA U$
+Silver cts/Troy OZ against EM LATIN AMERICA U$
+Palladium U$/Troy Ounce against EM LATIN AMERICA U$
+Platinum U$/Troy Ounce against EM LATIN AMERICA U$
