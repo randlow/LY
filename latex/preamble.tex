@@ -1,0 +1,116 @@
+\usepackage{amsmath,amssymb}
+\usepackage{fullpage}
+\usepackage{adjustbox}
+\usepackage{setspace}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fixltx2e}
+
+\usepackage{amsthm}
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+\newcommand{\mb}{\mathbold}
+\newcommand{\tx}{\textrm}
+\newcommand{\ttt}{\texttt}
+\newcommand{\tit}{\textit}
+\newcommand{\tss}{\textsuperscript}
+\newcommand{\tsub}{\textsubscript}
+\usepackage{titlesec}
+\titlespacing{\section}{0pt}{12pt}{12pt}
+\titlespacing{\subsection}{0pt}{12pt}{12pt}
+\usepackage{amsthm}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage[stable,bottom]{footmisc}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{epstopdf}
+
+\usepackage{siunitx}
+\usepackage{dcolumn}
+
+
+
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{units}
+\hypersetup{
+%    colorlinks=true,
+    linktocpage=true,
+    pdfstartpage=1,
+    pdfstartview=FitH,
+    breaklinks=true,
+    pdfpagemode=UseNone,
+    pageanchor=true,
+    pdfpagemode=PageWdth,
+    plainpages=true,
+    bookmarksnumbered,
+    bookmarksopen=false,
+    bookmarksopenlevel=2,
+    hypertexnames=true,
+    pdfhighlight=/O,
+    urlcolor=Black,
+    linkcolor=Black,
+    citecolor=Black,
+    pdftitle={},
+    pdfauthor={\textcopyright\ Kwong Yew Low (Rand)},
+    pdfsubject={},%
+    pdfkeywords={},%
+    pdfcreator={pdfLaTeX},%
+    pdfproducer={LaTeX with hyperref and classicthesis}%
+}
+
+\usepackage[all]{hypcap}
+
+\titleformat{\subsubsection}[hang]{\normalfont\scshape}{\thesubsubsection}{3pt}{}
+\titlespacing{\subsubsection}{0pt}{*2}{*2}
+\usepackage{printlen}
+\uselengthunit{in}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{nccmath}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{threeparttable}
+\usepackage{glossaries} % rand added 120411
+\robustify{\gls}
+\usepackage{etoolbox}
+
+\makeglossary % rand added 120411
+%\usepackage{float} % rand added 140411
+\usepackage{subfig} % rand added 140411
+\usepackage[english]{babel} % rand added 140411
+\usepackage{graphicx} % rand added 140411
+\usepackage{graphics} % rand added 140411
+\usepackage{lscape}
+
+\makeatletter
+\def\ps@pprintTitle{
+  \let\@oddhead\@empty
+  \let\@evenhead\@empty
+  \let\@oddfoot\@empty
+  \let\@evenfoot\@oddfoot
+}
+\makeatother
+
+\setcounter{topnumber}{2} \setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usetikzlibrary{snakes}
+\usetikzlibrary{decorations}
+\titlespacing*{\section}{0pt}{18pt plus 6pt minus 3pt}{9pt plus 6pt minus 3pt}
+\titlespacing*{\subsection}{0pt}{12pt plus 6pt minus 3pt}{3pt plus 6pt minus 3pt}
+\titlespacing*{\subsubsection}{0pt}{12pt plus 6pt minus 3pt}{3pt}
+\interfootnotelinepenalty=10000
+\linespread{1.05}
+\newcommand{\tnl}{\tabularnewline}
+\newcommand{\tab}{\hspace*{1em}}
+
+\onehalfspacing
+%\doublespacing
