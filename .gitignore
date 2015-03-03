@@ -1,3 +1,8 @@
 matlab/Book1.xlsx
 *.log
 *.spl
+*.gz
+latex/draft.pdf
+*.out
+latex/draft.glo
+*.aux
