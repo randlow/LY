@@ -6,3 +6,5 @@ latex/draft.pdf
 *.out
 latex/draft.glo
 *.aux
+*.bbl
+latex/draft.blg
