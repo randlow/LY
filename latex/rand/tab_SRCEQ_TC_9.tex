@@ -1,0 +1,132 @@
+\begin{tabularx}{1\textwidth}{Xcccccccc}
+\toprule
+Benchmark models &  \multicolumn{4}{c}{Sharpe Ratio (SR)} & \multicolumn{4}{c}{Certainty Equivalent (CEQ)}      \\
+\midrule
+%\multicolumn{7}{c}{\emph{Panel A: Benchmark models}} \\
+EWR (1/N) & \multicolumn{4}{c}{0.0913} & \multicolumn{4}{c}{0.3275}  \\
+EWNR & \multicolumn{4}{c}{0.0931} & \multicolumn{4}{c}{0.3366}  \\
+MVIS & \multicolumn{4}{c}{0.2194} & \multicolumn{4}{c}{1.6490}  \\
+\midrule
+Portfolio Strategy & $SR_{H}$ & $SR_{A}$ & $z_{SR_{A \neq H}}$ & $z_{SR_{A \neq 1/N}}$ & $CEQ_{H}$ & $CEQ_{A}$ & $z_{CEQ_{A \neq H}}$ & $z_{CEQ_{A \neq 1/N}}$\\
+\midrule
+\multicolumn{9}{c}{\emph{Panel A: Alternative Portfolio Rules, Window size $M=120$}} \\
+
+\multicolumn{9}{@{}l}{\emph{Classic approach that ignores estimation error}}  \\
+MVS   & -0.0605 & 0.0695  & 2.4589$^{b}$ & 1.5816        & -37.7824 & -7.9081 & 2.5826$^{b}$ & 1.7395$^{a}$ \\
+\multicolumn{9}{@{}l}{\emph{Bayesian approach to estimation error}} \\
+MVTZ  & -0.0605 & 0.0695  & 2.4589$^{b}$ & 1.5816        & -37.7824 & -7.9081 & 2.5826$^{b}$ & 1.7395$^{a}$ \\
+BSD   & -0.0605 & 0.0695  & 2.4589$^{b}$ & 1.5816        & -37.7824 & -7.9081 & 2.5826$^{b}$ & 1.7395$^{a}$ \\
+BS    & -0.0610 & -0.0496 & 0.9734       & 1.9795$^{b}$  & -13.6983 & -1.1451 & 2.1783$^{b}$ & 1.3192$^{a}$ \\
+DM1   & 0.0814  & 0.0683  & 1.1616       & 1.6887$^{a}$  & 0.2735   & -8.6981 & 1.9807$^{b}$ & 1.8917$^{a}$ \\
+\multicolumn{9}{@{}l}{\emph{Moment restrictions}}   \\
+MP    & 0.0846  & 0.0462  & 1.9971$^{b}$ & 1.7851$^{a}$  & 0.2989   & 0.1054  & 1.0053 & 1.0269 \\
+MIN   & 0.0716  & 0.0794  & 0.8720       & 1.6412        & 0.2142   & 0.2955  & 0.3369 & 0.1886 \\
+\multicolumn{9}{@{}l}{\emph{Portfolio constraints}}    \\
+MVC   & 0.0494  & 0.0960  & 1.9803$^{b}$ & 0.2038        & 0.1105   & 0.3816 & 1.8457$^{a}$ & 0.4093 \\
+BSC   & 0.0619  & 0.0885  & 1.6837$^{a}$ & 0.1198        & 0.1903   & 0.3319 & 1.7459$^{a}$ & 0.0335 \\
+MINC  & 0.0912  & 0.0964  & 0.5373       & 0.2170        & 0.3059   & 0.3860 & 0.4234 & 0.4894 \\
+GMINC & 0.0973  & 0.0995  & 0.3857       & 0.5466        & 0.3409   & 0.3852 & 0.3375 & 0.7177 \\
+\multicolumn{9}{@{}l}{\emph{Combination portfolios}}    \\
+MVMIN & -0.0611 & 0.0668  & 2.3077$^{b}$ & 1.6946$^{a}$  & -7.8013  & -0.0904 & 2.0680$^{b}$ & 1.6648$^{a}$ \\
+EWMIN & 0.0757  & 0.0687  & 1.6922$^{a}$ & 1.6806$^{a}$  &  0.2349  & 0.2291  & 0.0305       & 0.6692 \\
+EWKZ  & 0.0149  & -0.0646 & 2.1036$^{b}$ & 2.0270$^{b}$  & -0.0995  & -6.8459 & 2.0105$^{b}$ & 1.8111$^{a}$ \\
+EWMV  & 0.0129  & 0.0719  & 1.9943$^{b}$ & 1.3788        & -0.5616  & 0.2541  & 1.9757$^{b}$ & 0.4067 \\
+\midrule
+\multicolumn{9}{c}{\emph{Panel B: Alternative Portfolio Rules, Window size $M=240$}}  \\
+
+\multicolumn{9}{@{}l}{\emph{Classic approach that ignores estimation error}}  \\
+MVS   & 0.0397 & 0.0511  & 1.7218$^{a}$ & 1.8278$^{a}$ & 0.0371 & 0.1223 & 1.7036$^{a}$ & 1.9177$^{a}$ \\
+\multicolumn{9}{@{}l}{\emph{Bayesian approach to estimation error}} \\
+MVTZ  & 0.0397 & 0.0511  & 1.7218$^{a}$ & 1.8278$^{a}$ & 0.0371 & 0.1223 & 1.7036$^{a}$ & 1.9177$^{a}$ \\
+BSD   & 0.0397 & 0.0511  & 1.7218$^{a}$ & 1.8278$^{a}$ & 0.0371 & 0.1223 & 1.7036$^{a}$ & 1.9177$^{a}$ \\
+BS    & 0.0671 & 0.0725  & 1.1434       & 1.2846       & 0.2099 & 0.2542 & 0.2126 & 0.9173 \\
+DM1   & 0.0603 & 0.0515  & 1.2113$^{a}$ & 1.8193$^{a}$ & 0.1714 & 0.1246 & 0.9882 & 1.9081$^{a}$ \\
+\multicolumn{9}{@{}l}{\emph{Moment restrictions}}   \\
+MP    & 0.0898 & 0.0852  & 0.8909       & 1.3122       & 0.3235 & 0.2928 & 1.4758 & 1.6485 \\
+MIN   & 0.0808 & 0.0988  & 1.6749$^{a}$ & 0.4750       & 0.2574 & 0.4086 & 0.8645 & 1.7564$^{a}$ \\
+\multicolumn{9}{@{}l}{\emph{Portfolio constraints}}    \\
+MVC   & 0.0267 & 0.0708  & 1.9801$^{a}$ & 1.2375       & -0.0155 & 0.2387 & 2.0575$^{b}$ & 1.7772$^{a}$ \\
+BSC   & 0.0508 & 0.0572  & 0.8727       & 1.6730$^{a}$ & 0.1282 & 0.1632 & 0.1740 & 1.8182$^{a}$ \\
+MINC  & 0.0905 & 0.1000  & 1.6518$^{a}$ & 0.5449       & 0.3040 & 0.4086 & 1.6692$^{a}$ & 1.7838$^{a}$ \\
+GMINC & 0.0957 & 0.0958  & 0.0102       & 0.4401       & 0.3339 & 0.3705 & 0.6639 & 0.6793 \\
+\multicolumn{9}{@{}l}{\emph{Combination portfolios}}    \\
+MVMIN & 0.0752 & 0.0933  & 1.6679$^{a}$ & 0.1186       & 0.2414 & 0.3742 & 1.7235$^{a}$ & 0.8286 \\
+EWMIN & 0.0877 & 0.1044  & 1.8719$^{a}$ & 0.8496       & 0.2927 & 0.4282 & 2.0145$^{b}$ & 1.6546$^{a}$ \\
+EWKZ  & 0.0793 & 0.0961  & 1.6965$^{a}$ & 0.2930       & 0.2607 & 0.3820 & 1.7793$^{a}$ & 0.7375 \\
+EWMV  & 0.0651 & 0.0925  & 1.8706$^{a}$ & 0.0642       & 0.2014 & 0.3502 & 1.7073$^{a}$ & 0.5198 \\
+\bottomrule
+\end{tabularx}
+
+%\begin{tabularx}{1\textwidth}{Xcccccc}
+%\toprule
+%Benchmark models &  \multicolumn{2}{c}{Sharpe Ratio} & \multicolumn{2}{c}{CEQ} & \multicolumn{2}{c}{Sharpe Ratio exc. T.C.}     \\
+%\midrule \addlinespace
+%%\multicolumn{7}{c}{\emph{Panel A: Benchmark models}} \\
+%
+%
+%EWR (1/N) & \multicolumn{2}{c}{0.0913} & \multicolumn{2}{c}{0.33} & \multicolumn{2}{c}{0.0914} \\
+%EWNR & \multicolumn{2}{c}{0.0931} & \multicolumn{2}{c}{0.0034} & \multicolumn{2}{c}{0.0952} \\
+%MVIS & \multicolumn{2}{c}{0.2194} & \multicolumn{2}{c}{0.0165} & \multicolumn{2}{c}{0.2194} \\
+%\midrule
+% &  \multicolumn{2}{c}{Sharpe Ratio} & \multicolumn{2}{c}{CEQ} & \multicolumn{2}{c}{Sharpe Ratio exc. T.C.}     \\
+%  \cmidrule(l{0.25em}){2-3} \cmidrule(l{0.25em}){4-5} \cmidrule(l{0.25em}){6-7}
+%Portfolio Strategy & Hist. & Asymm. & Hist. & Asymm. & Hist. & Asymm \\
+%                   & samples & estimates & samples & estimates & samples & estimates \\
+%\midrule
+%\multicolumn{7}{c}{\emph{Panel A: Alternative Portfolio Rules, Window size $M=120$}} \\
+%\addlinespace
+%\multicolumn{7}{@{}l}{\emph{Classic approach that ignores estimation error}}  \\
+%MVS & -0.0605 & 0.0695 & -0.3778 & -0.0791 & -0.0598 & 0.0714 \\
+%\multicolumn{7}{@{}l}{\emph{Bayesian approach to estimation error}} \\
+%MVTZ & -0.0605 & 0.0695 & -0.3778 & -0.0791 & -0.0598 & 0.0714 \\
+%BSD & -0.0605 & 0.0695 & -0.3778 & -0.0791 & -0.0598 & 0.0714 \\
+%BS & -0.0610 & -0.0496 & -0.1370 & -0.0115 & -0.0602 & -0.0435 \\
+%DM1 & 0.0814 & 0.0683 & 0.0027 & -0.0870 & 0.0817 & 0.0702 \\
+%\multicolumn{7}{@{}l}{\emph{Moment restrictions}}   \\
+%MP & 0.0846 & 0.0462 & 0.0030 & 0.0011 & 0.0847 & 0.0476 \\
+%MIN & 0.0716 & 0.0794 & 0.0021 & 0.0030 & 0.0719 & 0.0822 \\
+%\multicolumn{7}{@{}l}{\emph{Portfolio constraints}}    \\
+%MVC & 0.0494 & 0.0960 & 0.0011 & 0.0038 & 0.0498 & 0.0988 \\
+%BSC & 0.0619 & 0.0885 & 0.0019 & 0.0033 & 0.0622 & 0.0913 \\
+%MINC & 0.0912 & 0.0964 & 0.0031 & 0.0039 & 0.0913 & 0.0986 \\
+%GMINC & 0.0973 & 0.0995 & 0.0034 & 0.0039 & 0.0974 & 0.1008 \\
+%\multicolumn{7}{@{}l}{\emph{Combination portfolios}}    \\
+%MVMIN & -0.0611 & 0.0668 & -0.0780 & -0.0009 & -0.0601 & 0.0698 \\
+%EWMIN & 0.0757 & 0.0687 & 0.0023 & 0.0023 & 0.0759 & 0.0712 \\
+%EWKZ & 0.0149 & -0.0646 & -0.0010 & -6.0085 & 0.0190 & -0.0643 \\
+%EWMV & 0.0129 & 0.0719 & -0.0056 & 0.0025 & 0.0186 & 0.0750 \\
+%\midrule
+%\multicolumn{7}{c}{\emph{Panel B: Alternative Portfolio Rules, Window size $M=240$}}  \\
+%\addlinespace
+%\multicolumn{7}{@{}l}{\emph{Classic approach that ignores estimation error}}  \\
+%MVS & 0.0397 & 0.0511 & 0.0004 & 0.0012 & 0.0403 & 0.0537 \\
+%\multicolumn{3}{@{}l}{\emph{Bayesian approach to estimation error}} \\
+%MVTZ & 0.0397 & 0.0511 & 0.0004 & 0.0012 & 0.0403 & 0.0537 \\
+%BSD & 0.0397 & 0.0511 & 0.0004 & 0.0012 & 0.0403 & 0.0537 \\
+%BS & 0.0671 & 0.0725 & 0.0021 & 0.0025 & 0.0674 & 0.0745 \\
+%DM1 & 0.0603 & 0.0515 & 0.0017 & 0.0012 & 0.0605 & 0.0540 \\
+%\multicolumn{3}{@{}l}{\emph{Moment restrictions}}   \\
+%MP & 0.0898 & 0.0852 & 0.0032 & 0.0029 & 0.0898 & 0.0856 \\
+%MIN & 0.0808 & 0.0988 & 0.0026 & 0.0041 & 0.0809 & 0.1001 \\
+%\multicolumn{7}{@{}l}{\emph{Portfolio constraints}}    \\
+%MVC & 0.0267 & 0.0708 & -0.0002 & 0.0024 & 0.0271 & 0.0732 \\
+%BSC & 0.0508 & 0.0572 & 0.0013 & 0.0016 & 0.0510 & 0.0592 \\
+%MINC & 0.0905 & 0.1000 & 0.0030 & 0.0041 & 0.0906 & 0.1012 \\
+%GMINC & 0.0957 & 0.0958 & 0.0033 & 0.0037 & 0.0957 & 0.0966 \\
+%\multicolumn{7}{@{}l}{\emph{Combination portfolios}}    \\
+%MVMIN & 0.0752 & 0.0933 & 0.0024 & 0.0037 & 0.0755 & 0.0946 \\
+%EWMIN & 0.0877 & 0.1044 & 0.0029 & 0.0043 & 0.0878 & 0.1054 \\
+%EWKZ & 0.0793 & 0.0961 & 0.0026 & 0.0038 & 0.0795 & 0.0972 \\
+%EWMV & 0.0651 & 0.0925 & 0.0020 & 0.0035 & 0.0655 & 0.0938 \\
+%\bottomrule
+%\end{tabularx}
+%
+%
+%%\toprule
+%% &  \multicolumn{2}{c}{Sharpe Ratio} & \multicolumn{2}{c}{CEQ} & \multicolumn{2}{c}{Sharpe Ratio exc. T.C.}     \\
+%%  \cmidrule(l{0.25em}){2-3} \cmidrule(l{0.25em}){4-5} \cmidrule(l{0.25em}){6-7}
+%%Portfolio Strategy & Hist. & Asymm. & Hist. & Asymm. & Hist. & Asymm \\
+%%                   & samples & estimates & samples & estimates & samples & estimates \\
+%%\midrule
+%%\multicolumn{7}{c}{\emph{Panel A: Benchmark Models}}\\
+%%\addlinespace
