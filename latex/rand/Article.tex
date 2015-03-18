@@ -35,7 +35,7 @@ Review papers on diamonds.
 \section{Data}
 \label{sec:data}
 
-The data set consists of daily returns of four precious gems (gold, silver, platinum and palladium), four precious gems (diamond, ruby, emerald and sapphire), and S\&P 500 index. All data is gathered from Datastream. Metal data covers a period from Aug 2, 1993 to Aug 2, 2013, a sample size of 5219 observations, and a shorter period for diamond data starting from Aug 2, 2004 to the same end date, totaled 2349 observations. The sample period encompasses Asian crisis in 1997, crash of Dotcom bubble in 2001, global financial crisis in 2008-09 and more recently the downgrade of US credit ratings in 2011. PolishedPrices diamond price indicies categorizes diamond indicies into three categories, commercial index, fine index and mixed index. Each index is further broken down into three subcategories based on weight of diamonds: 1 carat, 0.5 carat and 0.3 carat. Additionally there is an overall index that tracks the price movements of all diamonds that are contained in these nine indicies. Table \ref{tab:data_descrip}  exhibits descriptive statistics of all data included. Through inspecting the correlation with the S\&P 500, gold is found to be the only metal that negatively correlated with the S\&P 500. Palladium on the other hand shows the highest correlation with the market. 
+The data set consists of daily returns of five precious metals (gold, silver, platinum, palladium and rhodium), four precious gems (diamond, ruby, emerald and sapphire), and S\&P 500 index. All data is gathered from Datastream. Metal data covers a period from Aug 2, 1993 to Aug 2, 2013, a sample size of 5219 observations, and a shorter period for diamond data starting from Aug 2, 2004 to the same end date, totaled 2349 observations. The sample period encompasses Asian crisis in 1997, crash of Dotcom bubble in 2001, global financial crisis in 2008-09 and more recently the downgrade of US credit ratings in 2011. PolishedPrices diamond price indicies categorizes diamond indicies into three categories, commercial index, fine index and mixed index. Each index is further broken down into three subcategories based on weight of diamonds: 1 carat, 0.5 carat and 0.3 carat. Additionally there is an overall index that tracks the price movements of all diamonds that are contained in these nine indicies. Table \ref{tab:data_descrip}  exhibits descriptive statistics of all data included. Through inspecting the correlation with the S\&P 500, gold is found to be the only metal that negatively correlated with the S\&P 500. Palladium on the other hand shows the highest correlation with the market. 
 
 \begin{table}[htp!]
 \scriptsize \centering
@@ -55,23 +55,35 @@ This table shows the descriptive statistics of daily returns data for all assets
 
 \begin{figure}
 \centering
-\includegraphics[width=1\textwidth]{metal_prices}
+\includegraphics[width=1\textwidth]{metal-world}
 \captionsetup{labelfont=bf,font=footnotesize,skip=0.1cm}
 \caption{\textbf{Evolution of prices of precious metals}\\
-Silver price is showed in a different unit (cent per troy ounce) than gold, platinum and palladium (dollar per troy ounce). The S\&P 500 index is measured on the right vertical axis while metal prices are measured on the left vertical axis. The figure exhibits data spanning the entire sample period from Aug 2, 1993 to Aug 2, 2013.}\label{fig:metal_sp500}
+Silver price is showed in a different unit (cent per troy ounce) than gold, platinum, palladium and rhodium (dollar per troy ounce). The world index is measured on the left vertical axis while metal prices are measured on the right vertical axis. The figure exhibits data spanning the entire sample period from Aug 4, 2003 to Aug 2, 2013.}
+\label{fig:metal-world}
 \end{figure}
 
 \begin{figure}
 \centering
 \captionsetup{labelfont=bf,font=footnotesize,skip=0.1cm}
-%\includegraphics[width=1\textwidth]{diamond_sp500}
-\caption{\textbf{Evolution of diamond prices }\\
-The S\&P 500 index is measured on the left vertical axis while diamond index is measured on the right vertical axis. The figure exhibits data spanning the entire sample period of diamonds from Aug 2, 2003 to Aug 2, 2013.}\label{fig:diamond_sp500}
+\includegraphics[width=1\textwidth]{diamond-world}
+\caption{\textbf{Evolution of diamond indices }\\
+The world index is measured on the left vertical axis while diamond indices are measured on the right vertical axis. The figure exhibits data spanning the entire sample period of diamonds from Aug 4, 2003 to Aug 2, 2013.}
+\label{fig:diamond-world}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.34]{sp500Plot}
+	\includegraphics[scale=0.34]{flawless-world}
+	\captionsetup{labelfont=bf,font=footnotesize,skip=0.1cm}
+	\caption{\textbf{Evolution of diamond prices }\\
+		Evolution of prices of diamond prices. The world index is measured on the left vertical axis while diamond prices are measured on the right vertical axis. The figure exhibits data spanning the entire sample period of diamonds from Aug 4, 2003 to Aug 2, 2013. }
+	\label{fig:flawless-world}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+%	\includegraphics[scale=0.34]{sp500Plot}
 	\caption{\textbf{Daily conditional volatility of precious metals and the US market index}\
 	 GARCH GJR estimates of the US index return and the return on precious metals assets from Aug 2, 1993 to Aug 2, 2013. }
 	\label{fig:sp500Plot}
@@ -79,7 +91,7 @@ The S\&P 500 index is measured on the left vertical axis while diamond index is 
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.34]{sp500Plot}
+%	\includegraphics[scale=0.34]{sp500Plot}
 	\caption{\textbf{Daily conditional volatility of diamonds and the US market index}\
 	 GARCH GJR estimates of the US index return and the return of diamond assets from Aug 2, 1993 to Aug 2, 2013. }
 	\label{fig:sp500Plot}
@@ -135,6 +147,7 @@ strategy performance, we use both $M=120$ and $M=240$ month sampling windows.
 Table \ref{tab:volatility_results} presents the estimation results of model specified in \eqref{eq:vol}. We choose to study with extreme high volatilities given by the daily conditional volatility of the world index estimated with a GARCH(1,1) process. Three levels of volatility are chosen as a proxy for global financial market uncertainty. As the results shown, none of the asset except gold is a hedge against the US market. Apart from the hedging ability it also act as safe haven in periods of volatility surpassing 90\% and 95\%, but not 99\%. Silver and Platinum both work as safe haven when volatility is greater than 95\%. For the Australian market gold and diamonds are safe havens at 90\% volatility threshold. Interestingly enough, in periods of extreme volatility (99\% threshold), diamonds become the only asset that hold the safe haven potential.
 
 \begin{table}[htp!]
+\scriptsize
 \centering
 \captionsetup{labelfont=bf,font=footnotesize,skip=0.1cm}
 \caption{\textbf{Hedge and safe haven properties during periods of financial distress}\\
@@ -142,7 +155,7 @@ This table presents the estimation results for precious metals and gold for the 
 \begin{threeparttable}
 \input{tab_US_UK_fin_distress}
 \begin{tablenotes}
-\item [*,**,***] indicates statistical signifiance at the 10, 5, and 1 percent level, respectively.
+\item [*,**,***] indicates statistical significance at the 10, 5, and 1 percent level, respectively.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
